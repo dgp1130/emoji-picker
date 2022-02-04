@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./emoji-grid.component.css']
 })
 export class EmojiGridComponent {
-  emojis = ['a', 'b', 'c', 'd'];
+  emojis = ['😀', '😃', '😄', '😁'];
 }
