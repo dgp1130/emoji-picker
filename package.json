@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run -s build-emojis && ng serve",
+    "build": "npm run -s build-emojis && ng build",
+    "build-emojis": "npm run -s build-emoji-generator && npm run -s emoji-generator src/assets/emojis.json",
+    "build-emoji-generator": "(cd src/emoji-generator/ && tsc --outDir ../../dist/emoji-generator && cp emoji-data.txt ../../dist/emoji-generator/)",
+    "emoji-generator": "node dist/emoji-generator/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -28,7 +31,7 @@
     "@angular/cli": "~13.2.2",
     "@angular/compiler-cli": "~13.2.0",
     "@types/jasmine": "~3.10.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.43",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

@@ -1,1 +1,11 @@
 * Should default to Chrome Headless for Karma?
+* Custom builder which gets executed before default builder?
+  * How to set up a local builder?
+  * How to not need a monorepo structure?
+  * Error messages are rough and not helpful.
+* Karma doesn't support ESM config files. Can't set `"type": "module"`.
+* Assets
+  * Assets must start with project source root in the path, can't do generated assets.
+  * Tried to symlink to generated asset, but Webpack devserver doesn't like that?
+  * Assets can rename directories, but not files?
+* `.gitignore` ends up in generated assets.
