@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, combineLatest, debounceTime, from, map, takeUntil, Subject } from 'rxjs';
 import { EmojisService } from 'src/app/emojis.service';
@@ -8,7 +8,7 @@ import { EmojisService } from 'src/app/emojis.service';
   templateUrl: './emoji-grid.component.html',
   styleUrls: ['./emoji-grid.component.css']
 })
-export class EmojiGridComponent implements OnDestroy {
+export class EmojiGridComponent {
   constructor(
     private emojisService: EmojisService,
     private el: ElementRef,
@@ -21,12 +21,6 @@ export class EmojiGridComponent implements OnDestroy {
     this.filter$.next(value);
   }
 
-  // Emit when the component is destroyed.
-  private destroyed = new Subject<void>();
-  ngOnDestroy() {
-    this.destroyed.next();
-  }
-
   // Tracks all filtered emojis.
   emojis$ = combineLatest([
     // Get emojis from backend.
@@ -35,7 +29,6 @@ export class EmojiGridComponent implements OnDestroy {
     this.filter$.pipe(debounceTime(100)),
   ]).pipe(
     map(([ emojis, filter ]) => emojis.filter(({ name }) => name.includes(filter))),
-    takeUntil(this.destroyed),
   );
 
   /** Copy emoji to clipboard on click. */
