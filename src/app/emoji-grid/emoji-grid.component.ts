@@ -1,4 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, NgZone } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmojisService } from 'src/app/emojis.service';
 
 @Component({
@@ -7,7 +8,11 @@ import { EmojisService } from 'src/app/emojis.service';
   styleUrls: ['./emoji-grid.component.css']
 })
 export class EmojiGridComponent {
-  constructor(private emojisService: EmojisService, private el: ElementRef) {}
+  constructor(
+    private emojisService: EmojisService,
+    private el: ElementRef,
+    private snackBar: MatSnackBar,
+  ) {}
 
   emojis = this.emojisService.listEmojis();
 
@@ -21,6 +26,11 @@ export class EmojiGridComponent {
       if (!glyph) throw new Error(`No glyph for grid tile, ${el}.`);
 
       await navigator.clipboard.writeText(glyph);
+      this.snackBar.open('Copied to clipboard!', undefined /* action */, {
+        duration: 1000 /* ms */,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
       return;
     }
   }
