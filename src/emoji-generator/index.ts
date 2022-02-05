@@ -11,9 +11,7 @@ import * as process from 'process';
 
   // Read raw emoji data, parse it, generate the index, and write to the output.
   const emojis = await readEmojis();
-  const indexMap = generateIndex(emojis);
-  const index = Object.fromEntries(indexMap.entries());
-  const json = JSON.stringify({ emojis, index }, null, 2);
+  const json = JSON.stringify({ emojis }, null, 2);
   await fs.writeFile(outputFile, json, 'utf8');
 })().then(() => {
   process.exit(0);
@@ -68,22 +66,4 @@ function parseGlyph(codePoints: string): string {
   const points = codePoints.split(' ')
       .map((codePoint) => parseInt(codePoint, 16));
   return String.fromCodePoint(...points);
-}
-
-// Generates an index which maps keyword -> emoji code point.
-function generateIndex(emojis: Emoji[]): Map<string, Glyph[]> {
-  const index = new Map<string, Glyph[]>();
-
-  for (const { glyph: codePoint, name } of emojis) {
-    for (const keyword of name.split(' ')) {
-      const indexedEmojis = index.get(keyword);
-      if (indexedEmojis) {
-        indexedEmojis.push(codePoint);
-      } else {
-        index.set(keyword, [ codePoint ]);
-      }
-    }
-  }
-
-  return index;
 }
