@@ -1,5 +1,5 @@
 <!-- Filter input field. -->
-<app-emoji-filter></app-emoji-filter>
+<app-emoji-filter (filterChanged)="filter = $event"></app-emoji-filter>
 
 <!-- Emoji list. -->
-<app-emoji-grid></app-emoji-grid>
+<app-emoji-grid filter="{{ filter }}"></app-emoji-grid>

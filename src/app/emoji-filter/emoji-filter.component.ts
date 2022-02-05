@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-emoji-filter',
@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class EmojiFilterComponent {
   filter = '';
+  @Output() filterChanged = new EventEmitter<string>();
 }
