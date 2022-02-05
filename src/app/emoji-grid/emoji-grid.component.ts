@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, combineLatest, from, map, takeUntil, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, from, map, takeUntil, Subject } from 'rxjs';
 import { EmojisService } from 'src/app/emojis.service';
 
 @Component({
@@ -29,8 +29,10 @@ export class EmojiGridComponent implements OnDestroy {
 
   // Tracks all filtered emojis.
   emojis$ = combineLatest([
+    // Get emojis from backend.
     from(this.emojisService.listEmojis()),
-    this.filter$,
+    // Debounce changes to the filter to reduce layout thrashing.
+    this.filter$.pipe(debounceTime(100)),
   ]).pipe(
     map(([ emojis, filter ]) => emojis.filter(({ name }) => name.includes(filter))),
     takeUntil(this.destroyed),
