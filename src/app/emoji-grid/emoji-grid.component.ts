@@ -1,7 +1,8 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, combineLatest, debounceTime, from, map, takeUntil, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Subject, debounceTime, from, map, Observable } from 'rxjs';
 import { EmojisService } from 'src/app/emojis.service';
+import { TextSizeService } from 'src/app/text-size.service';
 
 @Component({
   selector: 'app-emoji-grid',
@@ -13,6 +14,8 @@ export class EmojiGridComponent {
     private emojisService: EmojisService,
     private el: ElementRef,
     private snackBar: MatSnackBar,
+    private textSizeService: TextSizeService,
+    private zone: NgZone,
   ) {}
 
   // Track filter changes in a subject.
@@ -48,6 +51,39 @@ export class EmojiGridComponent {
       });
       return;
     }
+  }
+
+  // Compute the number of columns in the grid based on the screen and text
+  // sizes.
+  private emojiWidth =
+      this.textSizeService.getTextWidth('😀', 'Noto Color Emoji');
+  cols$ = this.fromContentRect().pipe(
+    map(([ elWidth ]) => {
+      const tileWidth = this.emojiWidth * 2; // Give emoji some spacing.
+      return Math.floor(elWidth / tileWidth);
+    }),
+  );
+
+  /** Emits with the size of this element's content changes. */
+  private fromContentRect(): Observable<[ width: number, height: number ]> {
+    return new Observable((sub) => {
+      const observer = new ResizeObserver((entries) => {
+        // `observe()` is only ever called on one element.
+        if (entries.length !== 1) {
+          throw new Error(`Got ${entries.length} resize entries, expected only one.`);
+        }
+        const [entry] = entries;
+
+        // Must explicitly run inside the Zone as apparently Zone.js doesn't
+        // monkey patch this normally?
+        this.zone.run(() => {
+          sub.next([ entry.contentRect.width, entry.contentRect.height ]);
+        });
+      });
+      observer.observe(this.el.nativeElement);
+
+      return () => observer.unobserve(this.el.nativeElement);
+    });
   }
 }
 

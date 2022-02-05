@@ -9,3 +9,4 @@
   * Tried to symlink to generated asset, but Webpack devserver doesn't like that?
   * Assets can rename directories, but not files?
 * `.gitignore` ends up in generated assets.
+* Zone doesn't monkey patch `ResizeObserver`?

@@ -1,6 +1,6 @@
 <!-- Put the on click listener on the grid rather than every tile so we have
   O(1) listeners instead of O(n). -->
-<mat-grid-list cols="25" (click)="onGridClicked($event)">
+<mat-grid-list cols="{{ cols$ | async }}" (click)="onGridClicked($event)">
   <ng-container *ngIf="emojis$ | async as emojis">
     <mat-grid-tile *ngFor="let emoji of emojis" title="{{ emoji.name }}">
       {{ emoji.glyph }}
