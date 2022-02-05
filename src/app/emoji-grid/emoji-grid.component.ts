@@ -44,7 +44,7 @@ export class EmojiGridComponent {
       if (!glyph) throw new Error(`No glyph for grid tile, ${el}.`);
 
       await navigator.clipboard.writeText(glyph);
-      this.snackBar.open('Copied to clipboard!', undefined /* action */, {
+      this.snackBar.open(`Copied ${glyph} to clipboard!`, undefined /* action */, {
         duration: 1000 /* ms */,
         horizontalPosition: 'center',
         verticalPosition: 'top',
