@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmojisService } from 'src/app/emojis.service';
 
 @Component({
   selector: 'app-emoji-grid',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./emoji-grid.component.css']
 })
 export class EmojiGridComponent {
-  emojis = ['😀', '😃', '😄', '😁'];
+  constructor(private emojisService: EmojisService) {}
+
+  emojis = this.emojisService.listEmojis();
 }
