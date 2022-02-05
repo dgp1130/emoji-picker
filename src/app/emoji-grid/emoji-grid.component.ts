@@ -56,10 +56,10 @@ export class EmojiGridComponent {
   // Compute the number of columns in the grid based on the screen and text
   // sizes.
   private emojiWidth =
-      this.textSizeService.getTextWidth('😀', 'Noto Color Emoji');
+      this.textSizeService.getTextWidth('😀', '2rem Noto Color Emoji');
   cols$ = this.fromContentRect().pipe(
     map(([ elWidth ]) => {
-      const tileWidth = this.emojiWidth * 2; // Give emoji some spacing.
+      const tileWidth = this.emojiWidth * 1.2; // Give emoji some spacing.
       return Math.floor(elWidth / tileWidth);
     }),
   );
