@@ -19,13 +19,13 @@ export class EmojiGridComponent {
   ) {}
 
   // Track filter changes in a subject.
-  filter$ = new BehaviorSubject<string>('');
+  readonly filter$ = new BehaviorSubject<string>('');
   @Input() set filter(value: string) {
     this.filter$.next(value);
   }
 
   // Tracks all filtered emojis.
-  emojis$ = combineLatest([
+  readonly emojis$ = combineLatest([
     // Get emojis from backend.
     from(this.emojisService.listEmojis()),
     // Debounce changes to the filter to reduce layout thrashing.
@@ -55,9 +55,9 @@ export class EmojiGridComponent {
 
   // Compute the number of columns in the grid based on the screen and text
   // sizes.
-  private emojiWidth =
+  private readonly emojiWidth =
       this.textSizeService.getTextWidth('😀', '2rem Noto Color Emoji');
-  cols$ = this.fromContentRect().pipe(
+  readonly cols$ = this.fromContentRect().pipe(
     map(([ elWidth ]) => {
       const tileWidth = this.emojiWidth * 1.2; // Give emoji some spacing.
       return Math.floor(elWidth / tileWidth);
