@@ -12,7 +12,9 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/assets/emojis.json"
+          "/assets/emojis.json",
+          "/assets/noto-color-emoji.ttf",
+          "/assets/icons/*"
         ]
       }
     },
