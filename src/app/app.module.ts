@@ -12,12 +12,14 @@ import { EmojiGridComponent } from './emoji-grid/emoji-grid.component';
 import { EmojiFilterComponent } from './emoji-filter/emoji-filter.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmojiGridComponent,
     EmojiFilterComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
