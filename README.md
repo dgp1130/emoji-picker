@@ -1,27 +1,47 @@
-# EmojiPicker
+# Emoji Picker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+Try it now at [emoji.dwac.dev](https://emoji.dwac.dev/)!
 
-## Development server
+![Screenshot of the emoji picker, showing a large grid of various emoji icons and
+including a text box labeled "Emoji filter" with an popup message which reads "Copied 😀
+to clipboard!"](/docs/screenshot.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A simple emoji picker
+[Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction)
+with search functionality to easily find and copy your favorite ♥️ emojis! Use the search
+box 🔍 to filter for the emoji you are looking for, and click on it to easily copy to the
+clipboard 📋. Consider installing the application on your device (or add to home screen)
+for additional emoji goodness 🤗!
 
-## Code scaffolding
+# Local Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Install the development environment with:
 
-## Build
+```shell
+$ npm ci
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run the application locally with:
 
-## Running unit tests
+```shell
+$ npm start
+# Open your browser to http://localhost:4200/
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Testing
 
-## Running end-to-end tests
+Run tests with:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+$ npm test
+```
 
-## Further help
+Though I got pretty lazy with tests here, so TBH there's not much there.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Deployments
+
+Deploy with:
+
+```shell
+$ npm run -s deploy -- --site "${SITE_ID}" --prod
+```
