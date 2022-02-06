@@ -3,7 +3,7 @@
 Try it now at [emoji.dwac.dev](https://emoji.dwac.dev/)!
 
 ![Screenshot of the emoji picker, showing a large grid of various emoji icons and
-including a text box labeled "Emoji filter" with an popup message which reads "Copied 😀
+including a text box labeled "Emoji filter" with a popup message which reads "Copied 😀
 to clipboard!"](/docs/screenshot.png)
 
 A simple emoji picker
