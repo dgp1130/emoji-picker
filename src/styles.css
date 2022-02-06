@@ -5,3 +5,14 @@
     font-family: 'Noto Color Emoji';
     src: url('/assets/noto-color-emoji.ttf') format('truetype');
 }
+
+/* Let `<html />` and `<body />` tags take up the full viewport height. */
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    height: calc(100% - (8px * 2));
+    margin: 8px;
+}
