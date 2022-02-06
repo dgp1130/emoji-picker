@@ -7,12 +7,6 @@
       [(ngModel)]="filter"
       (ngModelChange)="filterChanged.emit($event)"
   />
-  <button
-      *ngIf="filter"
-      matSuffix
-      mat-icon-button aria-label="Clear"
-      (click)="filter=''; filterChanged.emit(filter)"
-  >
-    <mat-icon>clear</mat-icon>
-  </button>
+  <button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear"
+      (click)="filter=''; filterChanged.emit(filter)">X</button>
 </mat-form-field>
