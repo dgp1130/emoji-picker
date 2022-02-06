@@ -10,3 +10,5 @@
   * Assets can rename directories, but not files?
 * `.gitignore` ends up in generated assets.
 * Zone doesn't monkey patch `ResizeObserver`?
+* Using styles and passing context through `MatSnackbar` and `ng-template` is actually quite straightforward.
+  * Doing this manually is quite tricky to get right, particularly with style isolation.

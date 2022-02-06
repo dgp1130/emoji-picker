@@ -14,3 +14,11 @@ button {
   margin: 0;
   font-family: 'Noto Color Emoji';
 }
+
+.snackbar {
+  font-size: 1.5rem;
+}
+
+.emoji {
+  font-family: 'Noto Color Emoji';
+}

@@ -11,3 +11,9 @@
 <ng-template #loading>
   <progress>Loading...</progress>
 </ng-template>
+
+<ng-template #snackbar let-ctx>
+  <div class="snackbar">
+    Copied <span class="emoji">{{ ctx.glyph }}</span> to clipboard!
+  </div>
+</ng-template>

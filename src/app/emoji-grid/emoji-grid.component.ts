@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input, NgZone } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, TemplateRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, combineLatest, Subject, debounceTime, from, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, from, map, Observable } from 'rxjs';
 import { EmojisService } from 'src/app/emojis.service';
 import { TextSizeService } from 'src/app/text-size.service';
 
@@ -17,6 +17,8 @@ export class EmojiGridComponent {
     private textSizeService: TextSizeService,
     private zone: NgZone,
   ) {}
+
+  @ViewChild('snackbar') private snackbarTemplate!: TemplateRef<{ glyph: string }>;
 
   // Track filter changes in a subject.
   readonly filter$ = new BehaviorSubject<string>('');
@@ -44,10 +46,11 @@ export class EmojiGridComponent {
       if (!glyph) throw new Error(`No glyph for grid tile, ${el}.`);
 
       await navigator.clipboard.writeText(glyph);
-      this.snackBar.open(`Copied ${glyph} to clipboard!`, undefined /* action */, {
+      this.snackBar.openFromTemplate(this.snackbarTemplate, {
         duration: 1000 /* ms */,
         horizontalPosition: 'center',
         verticalPosition: 'top',
+        data: { glyph },
       });
       return;
     }
