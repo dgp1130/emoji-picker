@@ -1,8 +1,15 @@
 :host {
   display: block;
-  font-size: 2rem;
 }
 
 mat-grid-tile {
   cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
 }

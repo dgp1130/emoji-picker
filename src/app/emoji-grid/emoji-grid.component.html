@@ -3,7 +3,7 @@
 <mat-grid-list cols="{{ cols$ | async }}" (click)="onGridClicked($event)">
   <ng-container *ngIf="emojis$ | async as emojis">
     <mat-grid-tile *ngFor="let emoji of emojis" title="{{ emoji.name }}">
-      {{ emoji.glyph }}
+      <button>{{ emoji.glyph }}</button>
     </mat-grid-tile>
   </ng-container>
 </mat-grid-list>
